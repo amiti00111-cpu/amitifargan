@@ -112,16 +112,16 @@ export const content = {
     title: 'בואו נדבר על המטרה שלכם',
     fields: { name: 'שם מלא', phone: 'טלפון', goal: 'מטרה' },
     button: 'אני רוצה להתחיל',
-    note: 'השארת הפרטים אינה מחייבת. נחזור אליכם לשיחה קצרה.',
+    note: 'הפרטים שתשאירו ישמשו ליצירת קשר חוזר, ויישלחו אליי בדוא״ל. השארת הפרטים אינה מחייבת.',
     // Functional messages are placeholders, ready for the supplied final copy.
     messages: {
       invalidName: '[יש למלא שם מלא]',
       invalidPhone: '[יש להזין מספר טלפון תקין]',
       invalidGoal: '[יש למלא מטרה]',
-      notConnected: '[הטופס טרם מחובר לשליחה. הפרטים לא נשלחו.]',
-      pending: '[שולח…]',
-      success: '[הפרטים נשלחו בהצלחה]',
-      error: '[השליחה נכשלה. אפשר לנסות שוב.]',
+      notConnected: 'הטופס כרגע אינו מחובר. אפשר לפנות אליי ישירות באינסטגרם.',
+      pending: 'שולח…',
+      success: 'הפרטים התקבלו. אחזור אליכם בהקדם.',
+      error: 'השליחה לא הצליחה. נסו שוב בעוד רגע.',
     },
   },
   // Only supplied contact details should be added. Each link: { label, href }.

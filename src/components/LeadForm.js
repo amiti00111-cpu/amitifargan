@@ -46,8 +46,9 @@ export function initLeadForm() {
     try {
       const endpoint = new URL(site.form.endpoint, window.location.origin);
       if (endpoint.protocol !== 'https:' && endpoint.origin !== window.location.origin) throw new Error('Unsupported endpoint');
-      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), signal: controller.signal });
-      if (!response.ok) throw new Error('Submission failed');
+      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ ...data, _subject: 'פנייה חדשה מאתר אימון' }), signal: controller.signal });
+      const result = await response.json();
+      if (!response.ok || result.success === false) throw new Error('Submission failed');
       status.dataset.state = 'success';
       status.textContent = messages.success;
       form.reset();

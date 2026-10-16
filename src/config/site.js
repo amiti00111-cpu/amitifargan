@@ -6,14 +6,14 @@ export const site = {
   form: {
     // A real HTTPS endpoint accepting JSON { name, phone, goal }.
     // Keep private credentials on your server, never in this client config.
-    endpoint: '',
+    endpoint: 'https://formsubmit.co/ajax/amiti00111@gmail.com',
     timeoutMs: 15000,
   },
   seo: {
     // Title / description already use supplied copy in index.html.
     // Add the final canonical URL and supplied Open Graph image here.
-    canonicalUrl: '',
-    imageUrl: '',
+    canonicalUrl: 'https://amitifargan.vercel.app/',
+    imageUrl: 'https://amitifargan.vercel.app/images/coach-960.webp',
   },
 };
 
