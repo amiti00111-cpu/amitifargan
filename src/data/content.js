@@ -3,7 +3,7 @@
 // Image paths are relative to public/, e.g. /images/hero.webp.
 // Images: { src, alt, width, height, srcSet?, sizes? }.
 export const content = {
-  brand: '[שם המאמן / לוגו]',
+  brand: 'עמית יפרגן',
   logo: null,
   hero: {
     title: 'הגיע הזמן להרגיש טוב יותר בגוף שלכם',
