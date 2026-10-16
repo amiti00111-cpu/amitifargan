@@ -18,5 +18,5 @@ export function ProcessSection() {
 }
 
 export function BenefitsSection() {
-  return `<section class="section container benefits" id="benefits" aria-labelledby="benefits-title"><div class="benefits-panel"><span class="heading-rule" aria-hidden="true"></span><h2 id="benefits-title">${e(content.benefits.title)}</h2><p>${e(content.benefits.text)}</p></div></section>`;
+  return `<section class="section container benefits" id="benefits" aria-labelledby="benefits-title"><div class="benefits-panel"><span class="heading-rule" aria-hidden="true"></span><h2 id="benefits-title">${e(content.benefits.title)}</h2><p>${e(content.benefits.text)}</p><ul class="benefits-proof">${content.benefits.proofPoints.map((item) => `<li><strong>${e(item.value)}</strong><span>${e(item.label)}</span></li>`).join('')}</ul><p class="benefits-motivation">${e(content.benefits.motivation)}</p></div></section>`;
 }

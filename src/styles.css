@@ -94,8 +94,8 @@
   .placeholder-glyph svg { width: 32px; height: 32px; stroke-width: 1; }
   .audience { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .audience-grid { display: grid; gap: 14px; }
-  .audience-grid li { display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; line-height: 1.65; }
-  .audience-grid svg { width: 20px; height: 20px; margin-top: 3px; color: var(--ink); }
+  .audience-grid li { display: flex; align-items: flex-start; gap: 12px; padding: 18px; font-size: 1rem; line-height: 1.65; background: rgb(255 255 255 / 84%); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 10px 28px rgb(15 35 60 / 5%); }
+  .audience-grid svg { width: 20px; height: 20px; margin-top: 3px; color: var(--accent); }
   .problem { display: grid; gap: 26px; }
   .problem-heading { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
   .problem h2 { max-width: 14ch; }
@@ -138,6 +138,11 @@
   .benefits-panel { padding: 32px 24px; color: white; background: radial-gradient(circle at 90% 0%, rgb(64 105 151 / 48%), transparent 40%), linear-gradient(130deg, #101a27, #173b67); border-radius: 24px; box-shadow: 0 24px 64px rgb(12 37 66 / 18%); }
   .benefits-panel h2 { margin-top: 20px; max-width: 21ch; }
   .benefits-panel p { color: #e3ebf5; margin-top: 22px; font-size: 1.0625rem; max-width: 65ch; }
+  .benefits-proof { display: grid; gap: 12px; margin-top: 28px; }
+  .benefits-proof li { display: grid; gap: 5px; padding: 18px; border: 1px solid rgb(255 255 255 / 20%); border-radius: 16px; background: rgb(255 255 255 / 8%); }
+  .benefits-proof strong { color: #fff; font-size: 1.5rem; line-height: 1.2; }
+  .benefits-proof span { color: #d5e1ef; font-size: .9375rem; line-height: 1.5; }
+  .benefits-panel .benefits-motivation { margin-top: 28px; padding-top: 20px; border-top: 1px solid rgb(255 255 255 / 24%); font-size: 1.1rem; font-weight: 550; }
   .testimonial-grid { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 5px 0 18px; }
   .testimonial-card { flex: 0 0 min(100%, 360px); scroll-snap-align: start; min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; background: white; }
   .testimonial-card img { width: 100%; height: auto; object-fit: contain; }
@@ -228,7 +233,10 @@
     .benefits-panel { padding: 48px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 60px; }
     .benefits-panel .heading-rule { grid-column: 1 / -1; }
     .benefits-panel h2 { margin-top: 26px; }
-    .benefits-panel p { margin-top: 26px; }
+    .benefits-panel > p:not(.benefits-motivation) { margin-top: 26px; }
+    .benefits-proof { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 38px; }
+    .benefits-proof li { padding: 22px; }
+    .benefits-panel .benefits-motivation { grid-column: 1 / -1; }
     .cta-inner { flex-direction: row; align-items: center; justify-content: space-between; gap: 48px; }
     .lead-section { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; gap: 48px; }
     .lead-form { padding: 30px; }
@@ -249,7 +257,8 @@
     .brand { font-size: 1.05rem; }
     .section { padding-block: 88px; }
     .audience { padding-block: 48px; }
-    .audience-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; }
+    .audience-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .audience-grid li { min-height: 112px; }
     .audience-grid li { font-size: .9375rem; }
     .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
     .feature-card { padding: 28px 24px; min-height: 216px; }
