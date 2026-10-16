@@ -60,8 +60,8 @@ export const content = {
       },
       {
         id: 'drink-pink-shorts',
-        before: { src: '', sourceFile: 'ad57073f-9d63-4bc7-8afc-f1b5b4256f61.JPG', alt: 'לפני — התמונה עם הכוס' },
-        after: { src: '', sourceFile: '1ced7f39-eb5f-4e2f-9b65-4c5f0cea92cc.JPG', alt: 'אחרי — התמונה עם המכנס הוורוד' },
+        before: { src: '/images/ad57073f-9d63-4bc7-8afc-f1b5b4256f61.jpg', sourceFile: 'ad57073f-9d63-4bc7-8afc-f1b5b4256f61.JPG', alt: 'לפני — התמונה עם הכוס', width: 645, height: 1400 },
+        after: { src: '/images/1ced7f39-eb5f-4e2f-9b65-4c5f0cea92cc.jpg', sourceFile: '1ced7f39-eb5f-4e2f-9b65-4c5f0cea92cc.JPG', alt: 'אחרי — התמונה עם המכנס הוורוד', width: 659, height: 973 },
       },
       {
         id: 'outdoor-mirror',
