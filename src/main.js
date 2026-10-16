@@ -10,15 +10,17 @@ import { LeadForm, initLeadForm } from './components/LeadForm.js';
 import { FAQSection } from './components/FAQSection.js';
 import { Footer } from './components/Footer.js';
 import { MobileStickyCTA, initMobileStickyCTA } from './components/MobileStickyCTA.js';
+import { CookieConsent, initCookieConsent } from './components/CookieConsent.js';
 import { site } from './config/site.js';
 import { safeUrl } from './lib/html.js';
 
-document.querySelector('#app').innerHTML = `${Header()}<main id="main" tabindex="-1"><div id="top">${HeroSection()}</div>${AudienceSection()}${ProblemSection()}${CoachingFeatures()}${ResultsCarousel()}${ProcessSection()}${BenefitsSection()}${TestimonialsSection()}${CTASection()}${LeadForm()}${FAQSection()}</main>${Footer()}${MobileStickyCTA()}`;
+document.querySelector('#app').innerHTML = `${Header()}<main id="main" tabindex="-1"><div id="top">${HeroSection()}</div>${AudienceSection()}${ProblemSection()}${CoachingFeatures()}${ResultsCarousel()}${ProcessSection()}${BenefitsSection()}${TestimonialsSection()}${CTASection()}${LeadForm()}${FAQSection()}</main>${Footer()}${MobileStickyCTA()}${CookieConsent()}`;
 
 initHeader();
 initResultsCarousel();
 initLeadForm();
 initMobileStickyCTA();
+initCookieConsent();
 
 // Place keyboard focus at internal CTA destinations after navigation.
 document.addEventListener('click', (event) => {
