@@ -6,7 +6,7 @@ export const site = {
   form: {
     // A real HTTPS endpoint accepting JSON { name, phone, goal }.
     // Keep private credentials on your server, never in this client config.
-    endpoint: 'https://formsubmit.co/ajax/amiti00111@gmail.com',
+    endpoint: 'https://formsubmit.co/ajax/38162946dfe5d7f3fcfeafc24c99d8cd',
     timeoutMs: 15000,
   },
   seo: {

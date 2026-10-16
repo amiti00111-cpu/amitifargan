@@ -112,7 +112,7 @@ export const content = {
     title: 'בואו נדבר על המטרה שלכם',
     fields: { name: 'שם מלא', phone: 'טלפון', goal: 'מטרה' },
     button: 'אני רוצה להתחיל',
-    note: 'הפרטים שתשאירו ישמשו ליצירת קשר חוזר, ויישלחו אליי בדוא״ל. השארת הפרטים אינה מחייבת.',
+    note: 'הפרטים שתשאירו ישמשו ליצירת קשר חוזר, יועברו אליי בדוא״ל באמצעות FormSubmit, ויישמרו בשירות עד 30 יום. השארת הפרטים אינה מחייבת.',
     // Functional messages are placeholders, ready for the supplied final copy.
     messages: {
       invalidName: '[יש למלא שם מלא]',
