@@ -18,5 +18,33 @@ export function ProcessSection() {
 }
 
 export function BenefitsSection() {
-  return `<section class="section container benefits" id="benefits" aria-labelledby="benefits-title"><div class="benefits-panel"><span class="heading-rule" aria-hidden="true"></span><h2 id="benefits-title">${e(content.benefits.title)}</h2><p>${e(content.benefits.text)}</p><ul class="benefits-proof">${content.benefits.proofPoints.map((item) => `<li><strong>${e(item.value)}</strong><span>${e(item.label)}</span></li>`).join('')}</ul><p class="benefits-motivation">${e(content.benefits.motivation)}</p></div></section>`;
+  return `<section class="section container benefits" id="benefits" aria-labelledby="benefits-title"><div class="benefits-panel"><span class="heading-rule" aria-hidden="true"></span><h2 id="benefits-title">${e(content.benefits.title)}</h2><p>${e(content.benefits.text)}</p><ul class="benefits-proof">${content.benefits.proofPoints.map((item) => `<li><strong ${item.value === '90+' ? 'aria-label="מעל 90"' : ''}>${item.value === '90+' ? '<bdi dir="ltr" data-client-count aria-hidden="true">90+</bdi>' : e(item.value)}</strong><span>${e(item.label)}</span></li>`).join('')}</ul><p class="benefits-motivation">${e(content.benefits.motivation)}</p></div></section>`;
+}
+
+// Animate the displayed statistic once per visit; assistive technology keeps the final value.
+export function initClientCount() {
+  const counter = document.querySelector('[data-client-count]');
+  if (!counter || !('IntersectionObserver' in window)) return;
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (motion.matches) return;
+  let frame;
+  let started = false;
+  const finish = () => { cancelAnimationFrame(frame); counter.textContent = '90+'; };
+  const observer = new IntersectionObserver(entries => {
+    if (started || !entries.some(entry => entry.isIntersecting)) return;
+    started = true;
+    observer.disconnect();
+    if (motion.matches) return finish();
+    const start = performance.now();
+    counter.textContent = '0+';
+    const tick = now => {
+      const progress = Math.min(1, (now - start) / 2200);
+      counter.textContent = `${Math.floor(90 * (1 - Math.pow(1 - progress, 3)))}+`;
+      if (progress < 1 && !motion.matches) frame = requestAnimationFrame(tick);
+      else finish();
+    };
+    frame = requestAnimationFrame(tick);
+  }, { threshold: 0.5 });
+  observer.observe(counter);
+  motion.addEventListener('change', event => { if (event.matches) { observer.disconnect(); finish(); } });
 }
