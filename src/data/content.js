@@ -76,8 +76,9 @@ export const content = {
       },
       {
         id: 'outdoor-mirror',
-        before: { src: '', sourceFile: '05b69454-02fd-4d81-9b67-9a93786f80ce.JPG', alt: 'לפני — התמונה בחוץ ליד הקיר' },
-        after: { src: '', sourceFile: 'b91f328c-0ebb-4bdc-a4d4-c19b65d3a047.JPG', alt: 'אחרי — צילום בחדר הכושר מול המראה' },
+        overlayLabels: true,
+        before: { src: '/images/outdoor-before.webp', width: 1200, height: 1081, sourceFile: '05b69454-02fd-4d81-9b67-9a93786f80ce.JPG', alt: 'לפני — התמונה בחוץ ליד הקיר' },
+        after: { src: '/images/flex-after.webp', width: 1200, height: 970, sourceFile: 'b91f328c-0ebb-4bdc-a4d4-c19b65d3a047.JPG', alt: 'אחרי — הפעלת שריר מול המראה' },
       },
     ],
   },
