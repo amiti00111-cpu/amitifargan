@@ -58,3 +58,7 @@ npm run dev
 - `public/images/` — התמונות שמספקים.
 
 לבדיקת אינטגרציה אמיתית נדרש endpoint אמיתי ותמונות אמיתיות. ה־placeholders אינם מציגים תוצאות לקוחות.
+
+## Privacy and safety update (2026-10-20)
+
+The production form now posts to the Vercel `/api/contact` function. It validates consent, policy version, name, phone and fixed optional goals before forwarding a minimal payload to FormSubmit. `vite preview` does not serve Vercel functions; local successful UI flows require a stub or Vercel runtime. `npm run build` also writes static policy pages and `404.html`. Test the handler with `node --test scripts/contact.test.mjs`. See `SECURITY-REVIEW.md` for verified scope and outstanding operator/rights checks. The earlier 30-day retention copy was removed because no corresponding mailbox/provider purge was verified.

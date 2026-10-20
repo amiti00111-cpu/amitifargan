@@ -73,7 +73,7 @@ export function initResultsCarousel() {
   previous.addEventListener('click', () => goTo(index - 1));
   dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
   section.addEventListener('keydown', event => {
-    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.altKey || event.ctrlKey || event.metaKey || event.target.closest('a, input, select, textarea')) return;
     const targets = { ArrowLeft: index + 1, ArrowRight: index - 1, Home: 0, End: slides.length - 1 };
     if (event.key in targets) {
       event.preventDefault();

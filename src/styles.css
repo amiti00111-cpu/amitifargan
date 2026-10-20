@@ -285,3 +285,19 @@
     .faq-item::details-content { transition: none !important; }
   }
 }
+
+/* Policy pages and consent controls share the landing page's RTL design. */
+.policy-main { max-width: 850px; margin: auto; padding: 48px 24px 80px; overflow-wrap: anywhere; }
+.policy-main h1 { font-size: clamp(2rem, 6vw, 3rem); margin-block: 24px; }
+.policy-main h2 { font-size: 1.35rem; margin-block: 28px 10px; }
+.policy-main p { margin-block: 12px; }
+.policy-main a, .consent-field a, .cookie-copy a { text-decoration: underline; text-underline-offset: 4px; }
+.policy-main nav { display: flex; flex-wrap: wrap; gap: 16px; }
+.consent-field { margin-block: 20px; line-height: 1.8; }
+.consent-field input { width: 22px; height: 22px; margin-inline-end: 8px; vertical-align: middle; accent-color: #173b67; }
+.consent-field label { display: block; padding-block: 8px; cursor: pointer; }
+.field select { width: 100%; min-height: 50px; padding: 12px; font: inherit; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); }
+.cookie-banner { max-height: 55dvh; overflow-y: auto; bottom: 12px; }
+.cookie-open .mobile-sticky-cta { visibility: hidden; }
+.cookie-settings { min-height: 44px; }
+@media (max-width: 767px) { .cookie-open { padding-bottom: 320px; } }
