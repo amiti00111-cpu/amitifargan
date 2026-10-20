@@ -15,7 +15,7 @@ export const content = {
       src: '/images/coach-960.webp',
       srcSet: '/images/coach-480.webp 480w, /images/coach-960.webp 960w, /images/coach-1440.webp 1440w',
       sizes: '(min-width: 1280px) 487px, (min-width: 768px) 45vw, calc(100vw - 32px)',
-      alt: 'התמונה האישית של המאמן בחדר הכושר',
+      alt: 'עמית יפרגן, מאמן כושר, בחדר הכושר',
       width: 960,
       height: 1707,
     },
@@ -59,14 +59,21 @@ export const content = {
     // A blank src intentionally displays a placeholder, never an unrelated photo.
     items: [
       {
+        id: 'coach-bus-gym',
+        overlayLabels: true,
+        before: { src: '/images/coach-before.webp', alt: 'לפני — ללא חולצה באוטובוס', width: 739, height: 1600 },
+        after: { src: '/images/coach-after.webp', alt: 'אחרי — בגופייה שחורה בחדר הכושר', width: 900, height: 1600 },
+      },
+      {
         id: 'waterfall-mirror',
         before: { src: '', sourceFile: '5bb2b4e7-b66f-4321-a29c-201f346bfc17.JPG', alt: 'לפני — התמונה ליד המפל' },
         after: { src: '', sourceFile: '8f717d5b-c050-4215-b64f-1f43bb968fb7.JPG', alt: 'אחרי — צילום מול המראה' },
       },
       {
         id: 'black-shirt-back',
-        before: { src: '', sourceFile: 'A8DA48C1-9239-4A2A-943D-80B39B85E5E9.JPG', alt: 'לפני — התמונה עם החולצה השחורה' },
-        after: { src: '', sourceFile: '00d9c726-c5a6-41da-95be-6a7551f9cf69.JPG', alt: 'אחרי — צילום הגב ללא חולצה' },
+        overlayLabels: true,
+        before: { src: '/images/black-shirt-before.webp', width: 900, height: 1600, sourceFile: 'A8DA48C1-9239-4A2A-943D-80B39B85E5E9.JPG', alt: 'לפני — התמונה עם החולצה השחורה' },
+        after: { src: '/images/back-after.webp', width: 1000, height: 1333, sourceFile: '00d9c726-c5a6-41da-95be-6a7551f9cf69.JPG', alt: 'אחרי — צילום הגב ללא חולצה' },
       },
       {
         id: 'drink-pink-shorts',
@@ -75,8 +82,9 @@ export const content = {
       },
       {
         id: 'outdoor-mirror',
-        before: { src: '', sourceFile: '05b69454-02fd-4d81-9b67-9a93786f80ce.JPG', alt: 'לפני — התמונה בחוץ ליד הקיר' },
-        after: { src: '', sourceFile: 'b91f328c-0ebb-4bdc-a4d4-c19b65d3a047.JPG', alt: 'אחרי — צילום בחדר הכושר מול המראה' },
+        overlayLabels: true,
+        before: { src: '/images/outdoor-before.webp', width: 1200, height: 1081, sourceFile: '05b69454-02fd-4d81-9b67-9a93786f80ce.JPG', alt: 'לפני — התמונה בחוץ ליד הקיר' },
+        after: { src: '/images/flex-after.webp', width: 1200, height: 970, sourceFile: 'b91f328c-0ebb-4bdc-a4d4-c19b65d3a047.JPG', alt: 'אחרי — הפעלת שריר מול המראה' },
       },
     ],
   },
@@ -90,9 +98,9 @@ export const content = {
   },
   benefits: {
     title: 'ליווי ישיר, בלי לאבד את הדרך',
-    text: 'עברו אצלי עשרות מתאמנים, ואני חוקר את תחום הכושר כבר עשור. הזמינות שלכם חשובה לי במיוחד — אפשר לפנות אליי לאורך היום עם שאלות ולקבל ליווי אישי. תוכנית האימון, התזונה והמעקב הישיר מרוכזים באפליקציה, כדי שהכול יהיה מסודר ונגיש.',
+    text: 'ליוויתי מעל 90 מתאמנים, ואני חוקר את תחום הכושר כבר עשור. הזמינות שלכם חשובה לי במיוחד — אפשר לפנות אליי לאורך היום עם שאלות ולקבל ליווי אישי. תוכנית האימון, התזונה והמעקב הישיר מרוכזים באפליקציה, כדי שהכול יהיה מסודר ונגיש.',
     proofPoints: [
-      { value: 'עשרות', label: 'מתאמנים שליוויתי' },
+      { value: '90+', label: 'מתאמנים שליוויתי' },
       { value: '10 שנים', label: 'לומד וחוקר את תחום הכושר' },
       { value: 'לאורך היום', label: 'זמינות לשאלות ולקשר ישיר' },
     ],
@@ -106,18 +114,18 @@ export const content = {
   cta: {
     title: 'מחפש אנשים רציניים לתהליך',
     text: 'אם אתם רוצים להצליח ומוכנים להתמיד ולעבוד יחד, נלך יד ביד. תוכנית האימון והתזונה יופיעו באפליקציית המעקב, והמעקב הישיר בינינו ישמור על התהליך מסודר.',
-    button: 'אני רוצה להתחיל',
+    button: 'שליחת פרטים לשיחת היכרות',
   },
   form: {
     title: 'בואו נדבר על המטרה שלכם',
     fields: { name: 'שם מלא', phone: 'טלפון', goal: 'מטרה' },
-    button: 'אני רוצה להתחיל',
-    note: 'הפרטים שתשאירו ישמשו ליצירת קשר חוזר, יועברו אליי בדוא״ל באמצעות FormSubmit, ויישמרו בשירות עד 30 יום. השארת הפרטים אינה מחייבת.',
+    button: 'שליחת פרטים לשיחת היכרות',
+    note: 'נבקש שם וטלפון בלבד לחזרה לפנייה; בחירת מטרה כללית אינה חובה. הפרטים נשלחים לעמית יפרגן בדוא״ל דרך FormSubmit, ספק חיצוני שעשוי לעבד מידע מחוץ לישראל. אין למסור כאן מידע רפואי או רגיש. הפנייה אינה רכישה ואינה הרשמה לפרסומות.',
     // Functional messages are placeholders, ready for the supplied final copy.
     messages: {
-      invalidName: '[יש למלא שם מלא]',
-      invalidPhone: '[יש להזין מספר טלפון תקין]',
-      invalidGoal: '[יש למלא מטרה]',
+      invalidName: 'יש להזין שם באורך 2–100 תווים.',
+      invalidPhone: 'יש להזין מספר טלפון תקין.',
+      invalidGoal: 'יש לבחור מטרה מהרשימה או להשאיר ללא בחירה.',
       notConnected: 'הטופס כרגע אינו מחובר. אפשר לפנות אליי ישירות באינסטגרם.',
       pending: 'שולח…',
       success: 'הפרטים התקבלו. אחזור אליכם בהקדם.',
