@@ -5,7 +5,7 @@ import { media } from '../lib/media.js';
 const items = content.results.items.filter(item => item.image?.src || (item.before?.src && item.after?.src));
 
 function photo(image, label) {
-  return `<figure class="result-photo-overlay"><figcaption>${label}</figcaption><div class="result-frame">${media(image, label)}</div></figure>`;
+  return `<figure class="result-photo-overlay"><figcaption>${label}</figcaption><div class="result-frame">${media(image, label).replace('loading="lazy"', 'loading="eager"')}</div></figure>`;
 }
 
 function card(item, index) {
@@ -43,4 +43,20 @@ export function initResultsCarousel() {
   toggle.addEventListener('click', () => { paused = !paused; update(); });
   motion.addEventListener('change', event => { paused = event.matches; update(); });
   update();
+  const track = section.querySelector('.marquee-track');
+  const group = section.querySelector('.marquee-group');
+  let imagesReady = false;
+  function measure() {
+    if (!imagesReady) return;
+    const distance = group.getBoundingClientRect().width;
+    if (!distance) return;
+    track.style.setProperty('--loop-distance', distance + 'px');
+    // A fixed 18px/sec keeps the pace slow on both mobile and desktop.
+    track.style.setProperty('--loop-duration', (distance / 18) + 's');
+    section.classList.add('marquee-ready');
+  }
+  const images = [...track.querySelectorAll('img')];
+  Promise.allSettled(images.map(img => img.decode())).then(() => { imagesReady = true; measure(); });
+  if ('ResizeObserver' in window) new ResizeObserver(measure).observe(group);
+  else window.addEventListener('resize', measure);
 }

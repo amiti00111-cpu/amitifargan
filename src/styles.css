@@ -306,17 +306,24 @@
 .result-pair .result-photo-overlay figcaption { position: absolute; z-index: 2; top: 12px; inset-inline-start: 12px; padding: 6px 16px; border-radius: 7px; color: #fff; background: #142033; font-weight: 700; pointer-events: none; }
 
 /* Continuous belt: two identical groups make the end of the loop seamless. */
-.results-marquee .marquee-window { overflow: hidden; border-radius: var(--radius); min-width: 0; }
-.results-marquee .marquee-track { display: flex; direction: ltr; width: max-content; animation: results-belt 60s linear infinite; will-change: transform; }
-.results-marquee .marquee-group { display: flex; flex: 0 0 auto; gap: 20px; padding-right: 20px; }
+.results-marquee .marquee-window { direction: ltr; overflow: hidden; border-radius: var(--radius); min-width: 0; }
+.results-marquee .marquee-track { display: flex; direction: ltr; width: max-content; animation: none; will-change: transform; }
+.results-marquee .marquee-group { direction: ltr; display: flex; flex: 0 0 auto; gap: 20px; padding-right: 20px; }
 .results-marquee .result-slide { flex: 0 0 auto; width: clamp(300px, 72vw, 640px); direction: rtl; }
 .results-marquee .result-pair { gap: 12px; }
 .results-marquee .result-frame { height: clamp(280px, 45vw, 480px); aspect-ratio: auto; }
 .results-marquee .result-frame img { width: 100%; height: 100%; object-fit: contain; }
 .results-marquee.marquee-paused .marquee-track { animation-play-state: paused; }
-@keyframes results-belt { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes results-belt { from { transform: translateX(0); } to { transform: translateX(calc(-1 * var(--loop-distance))); } }
 @media (prefers-reduced-motion: reduce) {
   .results-marquee .marquee-track { animation: none; transform: none; }
   .results-marquee .marquee-copy { display: none; }
   .results-marquee .marquee-window { overflow-x: auto; }
+}
+
+.results-marquee.marquee-ready .marquee-track { animation: results-belt var(--loop-duration, 150s) linear infinite; }
+.results-marquee.marquee-ready.marquee-paused .marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .results-marquee.marquee-ready .marquee-track { animation: none; }
+  .results-marquee .marquee-toggle { display: none; }
 }
