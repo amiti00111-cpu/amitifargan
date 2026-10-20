@@ -59,6 +59,12 @@ export const content = {
     // A blank src intentionally displays a placeholder, never an unrelated photo.
     items: [
       {
+        id: 'coach-bus-gym',
+        overlayLabels: true,
+        before: { src: '/images/coach-before.webp', alt: 'לפני — ללא חולצה באוטובוס', width: 739, height: 1600 },
+        after: { src: '/images/coach-after.webp', alt: 'אחרי — בגופייה שחורה בחדר הכושר', width: 900, height: 1600 },
+      },
+      {
         id: 'waterfall-mirror',
         before: { src: '', sourceFile: '5bb2b4e7-b66f-4321-a29c-201f346bfc17.JPG', alt: 'לפני — התמונה ליד המפל' },
         after: { src: '', sourceFile: '8f717d5b-c050-4215-b64f-1f43bb968fb7.JPG', alt: 'אחרי — צילום מול המראה' },
