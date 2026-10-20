@@ -65,8 +65,9 @@ export const content = {
       },
       {
         id: 'black-shirt-back',
-        before: { src: '', sourceFile: 'A8DA48C1-9239-4A2A-943D-80B39B85E5E9.JPG', alt: 'לפני — התמונה עם החולצה השחורה' },
-        after: { src: '', sourceFile: '00d9c726-c5a6-41da-95be-6a7551f9cf69.JPG', alt: 'אחרי — צילום הגב ללא חולצה' },
+        overlayLabels: true,
+        before: { src: '/images/black-shirt-before.webp', width: 900, height: 1600, sourceFile: 'A8DA48C1-9239-4A2A-943D-80B39B85E5E9.JPG', alt: 'לפני — התמונה עם החולצה השחורה' },
+        after: { src: '/images/back-after.webp', width: 1000, height: 1333, sourceFile: '00d9c726-c5a6-41da-95be-6a7551f9cf69.JPG', alt: 'אחרי — צילום הגב ללא חולצה' },
       },
       {
         id: 'drink-pink-shorts',

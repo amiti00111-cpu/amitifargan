@@ -301,3 +301,6 @@
 .cookie-open .mobile-sticky-cta { visibility: hidden; }
 .cookie-settings { min-height: 44px; }
 @media (max-width: 767px) { .cookie-open { padding-bottom: 320px; } }
+
+.result-photo-overlay { position: relative; }
+.result-pair .result-photo-overlay figcaption { position: absolute; z-index: 2; top: 12px; inset-inline-start: 12px; padding: 6px 16px; border-radius: 7px; color: #fff; background: #142033; font-weight: 700; pointer-events: none; }

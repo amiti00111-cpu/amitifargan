@@ -2,15 +2,15 @@ import { content } from '../data/content.js';
 import { escapeHtml as e, icon } from '../lib/html.js';
 import { media } from '../lib/media.js';
 
-function resultPhoto(image, label) {
-  return `<figure><figcaption>${label}</figcaption><div class="result-frame">${media(image, `[${label}]`)}</div></figure>`;
+function resultPhoto(image, label, overlay = false) {
+  return `<figure${overlay ? ' class="result-photo-overlay"' : ''}><figcaption>${label}</figcaption><div class="result-frame">${media(image, `[${label}]`)}</div></figure>`;
 }
 
 function resultSlide(item, index) {
   // Each slide holds one confirmed pair. Combined photos remain intact.
   const imageContent = item.image?.src
     ? media(item.image, item.placeholder || '[Before / After]', { className: 'result-combined' })
-    : `<div class="result-pair">${resultPhoto(item.before, 'לפני')}${resultPhoto(item.after, 'אחרי')}</div>`;
+    : `<div class="result-pair">${resultPhoto(item.before, 'לפני', item.overlayLabels)}${resultPhoto(item.after, 'אחרי', item.overlayLabels)}</div>`;
   const caption = [item.name, item.duration, item.detail].filter(Boolean);
   return `<article class="result-slide" data-transformation="${e(item.id || index + 1)}" role="group" aria-roledescription="שקופית" aria-label="${index + 1} מתוך ${content.results.items.length}" ${index ? 'inert aria-hidden="true"' : ''}>
     <div class="result-media">${imageContent}</div>
