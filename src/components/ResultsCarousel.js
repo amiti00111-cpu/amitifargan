@@ -2,6 +2,8 @@ import { content } from '../data/content.js';
 import { escapeHtml as e, icon } from '../lib/html.js';
 import { media } from '../lib/media.js';
 
+const resultItems = content.results.items.filter(item => item.image?.src || (item.before?.src && item.after?.src));
+
 function resultPhoto(image, label, overlay = false) {
   return `<figure${overlay ? ' class="result-photo-overlay"' : ''}><figcaption>${label}</figcaption><div class="result-frame">${media(image, `[${label}]`)}</div></figure>`;
 }
@@ -12,29 +14,30 @@ function resultSlide(item, index) {
     ? media(item.image, item.placeholder || '[Before / After]', { className: 'result-combined' })
     : `<div class="result-pair">${resultPhoto(item.before, 'לפני', item.overlayLabels)}${resultPhoto(item.after, 'אחרי', item.overlayLabels)}</div>`;
   const caption = [item.name, item.duration, item.detail].filter(Boolean);
-  return `<article class="result-slide" data-transformation="${e(item.id || index + 1)}" role="group" aria-roledescription="שקופית" aria-label="${index + 1} מתוך ${content.results.items.length}" ${index ? 'inert aria-hidden="true"' : ''}>
+  return `<article class="result-slide" data-transformation="${e(item.id || index + 1)}" role="group" aria-roledescription="שקופית" aria-label="${index + 1} מתוך ${resultItems.length}" ${index ? 'inert aria-hidden="true"' : ''}>
     <div class="result-media">${imageContent}</div>
     ${caption.length ? `<div class="result-caption">${caption.map(text => `<p>${e(text)}</p>`).join('')}</div>` : ''}
   </article>`;
 }
 
 export function ResultsCarousel() {
-  const count = content.results.items.length;
+  const count = resultItems.length;
   if (!count) return '';
   const dots = count > 1 && count <= 8
-    ? `<div class="carousel-dots" aria-label="בחירת תוצאה">${content.results.items.map((_, index) => `<button type="button" class="carousel-dot ${index ? '' : 'is-active'}" aria-label="הצגת תוצאה ${index + 1}" aria-current="${index ? 'false' : 'true'}" aria-controls="results-track" data-slide="${index}"></button>`).join('')}</div>`
+    ? `<div class="carousel-dots" aria-label="בחירת תוצאה">${resultItems.map((_, index) => `<button type="button" class="carousel-dot ${index ? '' : 'is-active'}" aria-label="הצגת תוצאה ${index + 1}" aria-current="${index ? 'false' : 'true'}" aria-controls="results-track" data-slide="${index}"></button>`).join('')}</div>`
     : '';
   return `<section class="section results" id="results" aria-labelledby="results-title"><div class="container results-layout">
     <div class="results-intro">
       <div class="section-heading"><span class="heading-rule" aria-hidden="true"></span><h2 id="results-title">${e(content.results.title)}</h2></div>
       <div class="carousel-controls">
+        ${count > 1 ? '<button type="button" class="cookie-settings carousel-autoplay" aria-label="עצירת מעבר אוטומטי">עצירת מעבר אוטומטי</button>' : ''}
         <button type="button" class="icon-button carousel-prev" aria-label="התוצאה הקודמת" aria-controls="results-track" disabled>${icon('arrow-right')}</button>
         <span class="carousel-counter" dir="ltr" aria-live="polite" aria-atomic="true">1 / ${count}</span>
         <button type="button" class="icon-button carousel-next" aria-label="התוצאה הבאה" aria-controls="results-track" ${count === 1 ? 'disabled' : ''}>${icon('arrow')}</button>
       </div>
     </div>
     <div class="carousel" role="region" aria-roledescription="קרוסלה" aria-labelledby="results-title" tabindex="0">
-      <div class="carousel-window"><div class="carousel-track" id="results-track">${content.results.items.map(resultSlide).join('')}</div></div>
+      <div class="carousel-window"><div class="carousel-track" id="results-track">${resultItems.map(resultSlide).join('')}</div></div>
       ${dots}
     </div>
   </div></section>`;
@@ -51,6 +54,41 @@ export function initResultsCarousel() {
   const previous = section.querySelector('.carousel-prev');
   const next = section.querySelector('.carousel-next');
   let index = 0;
+  const toggle = section.querySelector('.carousel-autoplay');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let playing = !motion.matches && slides.length > 1;
+  let hovered = false;
+  let visible = !('IntersectionObserver' in window);
+  let timer;
+  function syncAutoplay() {
+    clearInterval(timer);
+    if (toggle) {
+      toggle.textContent = playing ? 'עצירת מעבר אוטומטי' : 'הפעלת מעבר אוטומטי';
+      toggle.setAttribute('aria-label', toggle.textContent);
+    }
+    const focused = section.contains(document.activeElement) && document.activeElement !== toggle;
+    const running = playing && !motion.matches && !hovered && !focused && visible && !document.hidden;
+    counter.setAttribute('aria-live', running ? 'off' : 'polite');
+    if (running) timer = setInterval(() => goTo((index + 1) % slides.length), 5000);
+  }
+  toggle?.addEventListener('click', () => { playing = !playing; syncAutoplay(); });
+  section.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; syncAutoplay(); } });
+  section.addEventListener('pointerleave', () => { hovered = false; syncAutoplay(); });
+  section.addEventListener('focusin', syncAutoplay);
+  section.addEventListener('focusout', () => requestAnimationFrame(syncAutoplay));
+  section.addEventListener('pointerdown', event => {
+    if (!event.target.closest('.carousel-autoplay')) { playing = false; syncAutoplay(); }
+  });
+  section.addEventListener('keydown', event => {
+    if (!event.target.closest('.carousel-autoplay')) { playing = false; syncAutoplay(); }
+  });
+  document.addEventListener('visibilitychange', syncAutoplay);
+  motion.addEventListener('change', () => { if (motion.matches) playing = false; syncAutoplay(); });
+  if ('IntersectionObserver' in window) {
+    const visibilityObserver = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; syncAutoplay(); }, { threshold: 0.15 });
+    visibilityObserver.observe(carousel);
+  }
+
 
   function goTo(target) {
     index = Math.max(0, Math.min(target, slides.length - 1));
@@ -114,4 +152,5 @@ export function initResultsCarousel() {
   viewport.addEventListener('dragstart', event => event.preventDefault());
   window.addEventListener('blur', resetDrag);
   goTo(0);
+  syncAutoplay();
 }
