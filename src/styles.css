@@ -412,3 +412,10 @@ h1, h2, h3 { text-align: center; }
 .policy-main h1, .policy-main h2 { text-align: center; }
 @media (min-width: 1024px) { .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (max-width: 767px) { .coaching-work-card, .process-step { padding: 22px 18px; } .hero-copy { padding-inline: 20px; } }
+
+/* Fixed mobile controls must not cover a keyboard user's focused content. */
+@media (max-width: 767px) {
+  body:has(:focus-visible:not(.mobile-sticky-cta a)) .mobile-sticky-cta { visibility: hidden; }
+}
+.contact-note { max-width: 68ch; color: var(--muted); font-size: .875rem; text-align: center; }
+.contact-note a { text-decoration: underline; text-underline-offset: 3px; }

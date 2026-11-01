@@ -22,19 +22,22 @@ export function initCookieConsent() {
   const choice = document.cookie.split(';').map(cookie => cookie.trim()).find(cookie => cookie.startsWith(`${CONSENT_COOKIE}=`))?.split('=')[1];
   const hasChoice = ['v2-essential'].includes(choice);
 
-  function saveChoice(choice) {
+  let returnFocus = null;
+  function saveChoice() {
     const secure = window.location.protocol === 'https:' ? '; Secure' : '';
     document.cookie = `${CONSENT_COOKIE}=v2-essential; Max-Age=${CONSENT_MAX_AGE}; Path=/; SameSite=Lax${secure}`;
     const hadFocus = banner.contains(document.activeElement);
     banner.hidden = true;
     document.body.classList.remove('cookie-open');
-    if (hadFocus) settingsButton?.focus({ preventScroll: true });
+    if (hadFocus && returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+    returnFocus = null;
   }
 
   if (!hasChoice || new URLSearchParams(window.location.search).get('cookies') === 'settings') { banner.hidden = false; document.body.classList.add('cookie-open'); }
   acceptButton.addEventListener('click', () => saveChoice('accepted'));
   essentialButton.addEventListener('click', () => saveChoice('essential'));
   settingsButton?.addEventListener('click', () => {
+    returnFocus = document.activeElement;
     banner.hidden = false;
     document.body.classList.add('cookie-open');
     essentialButton.focus();

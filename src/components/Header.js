@@ -15,5 +15,8 @@ export function initHeader() {
   nav.addEventListener('click', (event) => { if (event.target.closest('a')) close(); });
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') { close(); toggle.focus(); } });
   document.addEventListener('click', (event) => { if (!event.target.closest('.header-inner')) close(); });
+  nav.addEventListener('focusout', () => requestAnimationFrame(() => {
+    if (!nav.contains(document.activeElement) && document.activeElement !== toggle) close();
+  }));
   window.matchMedia('(min-width: 768px)').addEventListener('change', close);
 }

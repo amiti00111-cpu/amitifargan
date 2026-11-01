@@ -125,5 +125,5 @@ export const content = {
     button: 'לשיחת היכרות בוואטסאפ',
   },
   // Only supplied contact details should be added. Each link: { label, href }.
-  footer: { text: '', links: [{ label: 'וואטסאפ לעמית יפרגן', href: 'https://wa.me/972533352635' }] },
+  footer: { text: '', links: [{ label: 'וואטסאפ לעמית יפרגן', href: 'https://wa.me/972533352635' }, { label: 'טלפון: 053-335-2635', href: 'tel:+972533352635' }] },
 };

@@ -1,18 +1,50 @@
-# Site review — 2026-10-20
+# Site review — 2026-11-01
 
-Implemented: server validation of contact consent and allowed fields; bounded name/phone and fixed optional goal choices; no client credentials; no-store API responses; no personal-data logging; generic upstream errors/timeouts; same-origin browser submissions; restrictive CSP, no frames, local images/fonts; static privacy/cookies/terms/accessibility pages and 404; keyboard focus and form errors; cookie preference reopening. No marketing collection, tracking scripts or third-party embeds found. Testimonials list is empty: no invented reviews are displayed.
+## Scope and limits
+Reviewed the public landing page, its source, response headers, static policies, dependency advisories, and selected keyboard interactions. This is not a penetration test, assistive-technology certification, or legal opinion. No guarantee against claims, intrusion, or unknown vulnerabilities. The private coaching app, questionnaire, payment provider, signed client agreement, account permissions, MFA, WhatsApp backups, and business operations were not inspected.
 
-The API forwards selected fields to FormSubmit and email. Validation and honeypots reduce abuse but are not an authenticated rate limiter. Origin checks do not authenticate bots. The public form destination existed in earlier commits and is not a secret. Account security, MFA, access roles, mailbox retention, provider processing agreements and durable abuse/rate controls need separate operator review. No penetration test or guarantee of immunity is implied.
+## Verified observations
+- Public homepage and privacy, cookies, terms and accessibility pages return HTTP 200.
+- Unknown page and removed /api/contact return HTTP 404.
+- No forms, login, payment or server-side data collection endpoints remain in this repository's active site.
+- No analytics, pixels, social embeds or remote fonts found. Initial public DOM loaded only the local application script; no third-party embeds were observed.
+- One first-party essential cookie stores the consent preference (Secure on HTTPS, SameSite=Lax, max age 180 days); no advertising consent inferred.
+- HTTPS, HSTS, CSP, nosniff, anti-framing and Permissions-Policy verified in live responses before this change.
+- Images have alternative text, one H1, Hebrew/RTL, structured headings, skip link, named gallery region, visible focus, pause/manual carousel, reduced-motion support. Duplicate gallery group is inert and aria-hidden.
+- Primary text color pairs were checked previously: blue/white 11.30, ink/white 14.35, muted/light 5.77, pale/navy 9.40. These are selected pairs, not a full visual accessibility audit.
+- No fabricated testimonial entries. 90+ and ten years of study are owner-supplied claims, not independently evidenced.
 
-## Image rights evidence
+## Changes in this review
+- Upgrade Vite 7.3.1 to 7.3.7 and update esbuild to the patched dependency resolved by the lockfile. Advisories primarily concern development servers, not evidence of a live-site compromise. Development and preview commands now bind localhost.
+- Tighten CSP connect-src, form-action and base-uri to 'none'; change Referrer-Policy to no-referrer. Reassess these if any new API, analytics, embed or form is introduced.
+- Add telephone contact alongside WhatsApp in footer and policy contact information.
+- Clarify voluntary disclosure, controller identity, and possible inability to respond without contact details.
+- Correct policy instructions: Enter for links; Enter/Space for buttons.
+- Preserve list semantics explicitly and close mobile navigation when keyboard focus leaves it.
+- Hide fixed mobile contact control while other content has keyboard focus, so it cannot cover that focused content.
+- Restore cookie-banner focus only to its actual opener; initial dismissal no longer focuses a distant footer control.
+- Add visible privacy link and note about variable results and medical-advice limits near contact CTA.
 
-- `coach-480.webp`, `coach-960.webp`, `coach-1440.webp`: existing README records derivation from user-supplied `IMG_4878.heic`. That is provenance, not proof of photographer copyright or commercial-use rights.
-- Result images `ad57073f-9d63-4bc7-8afc-f1b5b4256f61.jpg` and `1ced7f39-eb5f-4e2f-9b65-4c5f0cea92cc.jpg`: user-supplied pairing recorded in content data; written photographer rights and subject publication consent have not been supplied.
-- Other carousel entries contain only source filenames and no live image files.
-- No external stock photos, remote fonts or embedded social images found. Font is the bundled @fontsource-variable/heebo dependency; retain its OFL license when distributing.
+## Required operator/professional follow-up
+1. Image permissions: four active before/after pairs plus hero versions. User supplied the files and pairings, but photographer licenses and each subject's commercial publication consent were not furnished. Verify age and appropriate guardian permissions if applicable. Do not treat upload permission as proof of rights. Maintain written evidence and correct context.
+2. Accessibility: no actual-device mobile test, screen-reader session, full browser/zoom matrix, or professional compliance sign-off. The website declaration deliberately does not claim full compliance. Determine and document any lawful exemption using current business facts; none has been asserted on the website.
+3. Nutrition scope: the site promises personalized menus but does not claim a dietitian license. Verify qualifications, actual services, referral boundaries and wording with a qualified legal adviser. A disclaimer does not authorize a regulated service.
+4. Commercial promises: verify 90+ coached, ten years studying, monthly meetings and availability. Confirm photo outcomes are genuine and correctly attributed. No refund guarantee or blanket no-liability clause was introduced.
+5. Client onboarding: website terms cover a contact-only page, not the paid coaching agreement. Review the actual Grow flow, required consumer disclosures, cancellation rules, and evidence of terms acceptance before payment separately.
+6. Data outside the landing page: document questionnaire/app vendors, collected health/body/progress data, access, legal basis/notice, retention and deletion, backups and processor arrangements. Website privacy text is not a full audit of these systems.
+7. Account security: owner must verify MFA, least-privilege repository/Vercel access and device/WhatsApp security. No credentials or account security settings were collected or changed.
 
-Owner must confirm the rights and publication consent for the existing images. No claim of rights clearance has been added to the site. Existing user-supplied images are retained. Keep only authentic approved testimonials if supplied later.
+## Reference materials checked
+- https://www.gov.il/he/pages/website_accessibility
+- https://www.gov.il/he/pages/declaration_website_accessibility
+- https://www.gov.il/BlobFolder/legalinfo/duty_to_notify/he/notify13.pdf
+- https://www.gov.il/he/pages/licensing-medical-nutrition
+- https://github.com/vitejs/vite/security/advisories
+- https://github.com/advisories/GHSA-g7r4-m6w7-qqqr
 
-## Policies and limits
+Dependency scan/build results are reported in the review handoff. An npm audit with zero findings is limited to advisories known to the registry at scan time.
 
-Policies describe actual contact-only site behavior; they do not substitute for the separately supplied paid coaching agreement or change cancellation/refund rights. No unsupported retention period or certification of accessibility was asserted. Owner contact uses the known Instagram account; a direct accessible phone/email channel should be supplied for privacy and accessibility inquiries. Legal review and manual assistive-technology testing remain outstanding.
+## Verification result for this revision
+- npm run build passed on Vite 7.3.7 / esbuild 0.28.2.
+- npm audit (all production and development dependencies): 0 known vulnerabilities reported at scan time.
+- Generated policy pages contain telephone contact; voluntary-information notice and links verified.
