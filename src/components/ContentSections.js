@@ -48,3 +48,7 @@ export function initClientCount() {
   observer.observe(counter);
   motion.addEventListener('change', event => { if (event.matches) { observer.disconnect(); finish(); } });
 }
+
+export function CoachingProcessSection() {
+  return `<section class="section coaching-work" id="coaching-work" aria-labelledby="coaching-work-title"><div class="container"><div class="section-heading"><span class="heading-rule" aria-hidden="true"></span><h2 id="coaching-work-title">${e(content.coachingProcess.title)}</h2></div><ol class="coaching-work-grid" role="list">${content.coachingProcess.items.map((item, index) => `<li class="coaching-work-card"><span class="coaching-step" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><div><h3>${e(item.title)}</h3><p>${e(item.text)}</p></div></li>`).join('')}</ol></div></section>`;
+}

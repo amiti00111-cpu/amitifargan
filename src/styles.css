@@ -305,25 +305,66 @@
 .result-photo-overlay { position: relative; }
 .result-pair .result-photo-overlay figcaption { position: absolute; z-index: 2; top: 12px; inset-inline-start: 12px; padding: 6px 16px; border-radius: 7px; color: #fff; background: #142033; font-weight: 700; pointer-events: none; }
 
-/* Continuous belt: two identical groups make the end of the loop seamless. */
+/* Each confirmed before/after pair stays together at all viewport sizes. */
 .results-marquee .marquee-window { direction: ltr; overflow: hidden; border-radius: var(--radius); min-width: 0; }
-.results-marquee .marquee-track { display: flex; direction: ltr; width: max-content; animation: none; will-change: transform; }
+.results-marquee .marquee-track { display: flex; direction: ltr; width: max-content; will-change: transform; }
 .results-marquee .marquee-group { direction: ltr; display: flex; flex: 0 0 auto; gap: 20px; padding-right: 20px; }
-.results-marquee .result-slide { flex: 0 0 auto; width: clamp(300px, 72vw, 640px); direction: rtl; }
-.results-marquee .result-pair { gap: 12px; }
-.results-marquee .result-frame { height: clamp(280px, 45vw, 480px); aspect-ratio: auto; }
-.results-marquee .result-frame img { width: 100%; height: 100%; object-fit: contain; }
-.results-marquee.marquee-paused .marquee-track { animation-play-state: paused; }
+.results-marquee .result-slide { flex: 0 0 auto; width: min(640px, calc(100vw - 48px)); direction: rtl; padding: 12px; background: #fff; border: 1px solid #dce5ef; border-radius: 18px; }
+.result-person { font-size: 1rem; margin-bottom: 12px; color: #173b67; }
+.results-marquee .result-pair { gap: 8px; align-items: stretch; }
+.results-marquee .result-frame { height: clamp(220px, 46vw, 440px); aspect-ratio: auto; border-radius: 10px; background: #edf1f5; }
+.results-marquee .result-frame img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.results-marquee .result-photo-overlay figcaption { top: 8px; inset-inline-start: 8px; font-size: .875rem; padding: 4px 10px; }
+.results-help { color: #526174; font-size: .9375rem; max-width: 65ch; }
+.marquee-toggle, .results-navigation button { min-height: 44px; padding: 10px 16px; border: 1px solid #173b67; border-radius: 9px; color: #173b67; background: #fff; font: inherit; font-weight: 550; }
+.results-navigation { display: none; justify-content: space-between; gap: 12px; }
+.results-marquee.marquee-ready:not(.marquee-manual) .marquee-track { animation: results-belt var(--loop-duration,150s) linear infinite; }
+.results-marquee.marquee-manual .marquee-track { animation: none; transform: none; }
+.results-marquee.marquee-manual .marquee-copy { display: none; }
+.results-marquee.marquee-manual .marquee-window { overflow-x: auto; scroll-snap-type: x proximity; overscroll-behavior-inline: contain; padding-bottom: 12px; }
+.results-marquee.marquee-manual .result-slide { scroll-snap-align: start; }
+.results-marquee.marquee-manual .results-navigation { display: flex; }
 @keyframes results-belt { from { transform: translateX(0); } to { transform: translateX(calc(-1 * var(--loop-distance))); } }
+.coaching-work { background: #fff; border-block: 1px solid #dce5ef; }
+.coaching-work-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.coaching-work-card { display: flex; align-items: flex-start; gap: 16px; padding: 22px; border: 1px solid #dce5ef; border-radius: 16px; background: #f8fafc; min-width: 0; }
+.coaching-step { display: grid; place-items: center; flex: 0 0 44px; min-height: 44px; border-radius: 12px; color: #fff; background: #173b67; font-variant-numeric: tabular-nums; }
+.coaching-work-card h3 { font-size: 1.125rem; }
+.coaching-work-card p { margin-top: 10px; color: #526174; line-height: 1.8; }
+/* Keyboard focus remains visible on light and dark surfaces. */
+:focus-visible { outline: 3px solid #173b67; outline-offset: 4px; box-shadow: 0 0 0 7px #fff; }
+.hero :focus-visible, .benefits-panel :focus-visible, .cta-section :focus-visible { outline-color: #fff; box-shadow: 0 0 0 7px #173b67; }
+a, button { overflow-wrap: anywhere; }
+section, main, .footer-inner, .header-inner, .hero-copy, .feature-card > p { min-width: 0; }
+.footer-inner { flex-wrap: wrap; }
+.footer-inner nav a { min-height: 44px; }
+.cookie-banner { bottom: max(12px, env(safe-area-inset-bottom)); }
+@media (min-width: 600px) { .coaching-work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .coaching-work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 767px) {
+  body { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .hero-copy { padding: 28px 18px; }
+  .hero h1 { font-size: clamp(1.9rem, 8.6vw, 3rem); }
+  .hero-media { height: clamp(300px, 90vw, 430px); }
+  .hero-media > img { object-position: center 28%; }
+  .section { padding-block: 44px; }
+  .cta-inner .button { width: 100%; }
+  .benefits-panel { padding: 28px 20px; }
+  .header-nav { max-height: calc(100dvh - 80px); overflow-y: auto; }
+  .coaching-work-card { padding: 18px; }
+  .cookie-open { padding-bottom: 80px; }
+  .results-navigation button { flex: 1; padding-inline: 8px; font-size: .875rem; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header-inner { gap: 8px; }
+  .header-nav { gap: 2px; }
+  .header-nav > a:not(.button) { font-size: .8rem; padding-inline: 6px; }
+  .header-nav .button { padding-inline: 10px; font-size: .8rem; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .results-marquee .marquee-track { animation: none; transform: none; }
+  .results-marquee .marquee-track { animation: none !important; transform: none; }
   .results-marquee .marquee-copy { display: none; }
   .results-marquee .marquee-window { overflow-x: auto; }
+  .results-marquee .results-navigation { display: flex; }
 }
-
-.results-marquee.marquee-ready .marquee-track { animation: results-belt var(--loop-duration, 150s) linear infinite; }
-.results-marquee.marquee-ready.marquee-paused .marquee-track { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) {
-  .results-marquee.marquee-ready .marquee-track { animation: none; }
-  .results-marquee .marquee-toggle { display: none; }
-}
+@media (forced-colors: active) { :focus-visible { outline: 3px solid Highlight; } .button, .coaching-step { border: 1px solid ButtonText; } }
