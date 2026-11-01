@@ -8,16 +8,14 @@ export function MobileStickyCTA() {
 
 export function initMobileStickyCTA() {
   const sticky = document.querySelector('.mobile-sticky-cta');
-  const form = document.querySelector('#lead-form');
-  let formVisible = false;
-  let formFocused = false;
-  let heroCtaVisible = false;
-  const update = () => { sticky.hidden = formVisible || formFocused || heroCtaVisible; };
-  const observer = new IntersectionObserver((entries) => { formVisible = entries[0].isIntersecting; update(); }, { threshold: 0, rootMargin: '0px 0px 80px 0px' });
-  observer.observe(form);
-  const heroCta = document.querySelector('.hero-button');
-  const heroObserver = new IntersectionObserver(entries => { heroCtaVisible = entries[0].isIntersecting; update(); });
-  if (heroCta) heroObserver.observe(heroCta);
-  form.addEventListener('focusin', () => { formFocused = true; update(); });
-  form.addEventListener('focusout', () => { requestAnimationFrame(() => { formFocused = form.contains(document.activeElement); update(); }); });
+  if (!sticky) return;
+  const visibleCtas = new Set();
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) visibleCtas.add(entry.target);
+      else visibleCtas.delete(entry.target);
+    });
+    sticky.hidden = visibleCtas.size > 0;
+  });
+  document.querySelectorAll('.hero-button, .cta-section .button').forEach(cta => observer.observe(cta));
 }
