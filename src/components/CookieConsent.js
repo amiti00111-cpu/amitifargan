@@ -5,7 +5,7 @@ export function CookieConsent() {
   return `<section class="cookie-banner" id="cookie-banner" hidden aria-labelledby="cookie-title">
     <div class="cookie-copy">
       <h2 id="cookie-title">העדפות עוגיות</h2>
-      <p>אנחנו שומרים עוגייה חיונית כדי לזכור את הבחירה שלך. כרגע אין באתר כלי מדידה, פרסום או הטמעות חיצוניות. <a href="/cookies.html">למדיניות העוגיות</a>. אפשר לשנות את הבחירה דרך הקישור שבתחתית האתר.</p>
+      <p>האתר שומר רק עוגייה שנועדה לזכור את הבחירה שלכם. כרגע אין בו כלי מעקב, פרסום או הטמעות חיצוניות. <a href="/cookies.html">למדיניות העוגיות</a>. אפשר לחזור להגדרות העוגיות בתחתית האתר.</p>
     </div>
     <div class="cookie-actions">
       <button type="button" data-cookie-essential>רק הכרחיות</button>

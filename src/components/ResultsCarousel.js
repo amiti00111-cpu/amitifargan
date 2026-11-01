@@ -18,7 +18,7 @@ export function ResultsCarousel() {
   const cards = items.map(card).join('');
   return `<section class="section results results-marquee" id="results" aria-labelledby="results-title"><div class="container results-layout">
     <div class="results-intro"><div class="section-heading"><span class="heading-rule" aria-hidden="true"></span><h2 id="results-title">${e(content.results.title)}</h2></div><button type="button" class="marquee-toggle" aria-controls="results-track">עצירת התנועה</button></div>
-    <p class="results-help" id="results-help">כל זוג תמונות מוצג יחד. אפשר לעצור את התנועה ולגלול בין התוצאות. התוצאות אישיות ומשתנות מאדם לאדם.</p>
+    <p class="results-help" id="results-help">אפשר לעצור את התנועה ולראות כל זוג תמונות בקצב שלכם. התוצאות משתנות מאדם לאדם.</p>
     <div class="marquee-window" role="region" tabindex="0" aria-label="גלריית לפני ואחרי" aria-describedby="results-help">
       <div class="marquee-track" id="results-track"><div class="marquee-group">${cards}</div><div class="marquee-group marquee-copy" aria-hidden="true" inert>${cards}</div></div>
     </div><div class="results-navigation"><button class="result-previous" type="button" aria-label="הצגת זוג התמונות הקודם">לתוצאה הקודמת</button><button class="result-next" type="button" aria-label="הצגת זוג התמונות הבא">לתוצאה הבאה</button></div>
