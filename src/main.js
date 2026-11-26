@@ -3,7 +3,7 @@ import './premium.css';
 import { AppShowcase, initPremiumMotion } from './components/AppShowcase.js';
 import { Header, initHeader } from './components/Header.js';
 import { HeroSection } from './components/HeroSection.js';
-import { AudienceSection, ProblemSection, CoachingFeatures, CoachingProcessSection, ProcessSection, BenefitsSection, initClientCount } from './components/ContentSections.js';
+import { AudienceSection, CoachingProcessSection, BenefitsSection } from './components/ContentSections.js';
 import { ResultsCarousel, initResultsCarousel } from './components/ResultsCarousel.js';
 import { TestimonialsSection } from './components/TestimonialsSection.js';
 import { CTASection } from './components/CTASection.js';
@@ -14,10 +14,9 @@ import { CookieConsent, initCookieConsent } from './components/CookieConsent.js'
 import { site } from './config/site.js';
 import { safeUrl } from './lib/html.js';
 
-document.querySelector('#app').innerHTML = `${Header()}<main id="main" tabindex="-1"><div id="top">${HeroSection()}</div>${CookieConsent()}${AudienceSection()}${ProblemSection()}${CoachingFeatures()}${CoachingProcessSection()}${AppShowcase()}${BenefitsSection()}${ResultsCarousel()}${TestimonialsSection()}${ProcessSection()}${FAQSection()}${CTASection()}</main>${Footer()}${MobileStickyCTA()}`;
+document.querySelector('#app').innerHTML = `${Header()}<main id="main" tabindex="-1"><div id="top">${HeroSection()}</div>${CookieConsent()}${ResultsCarousel()}${AudienceSection()}${CoachingProcessSection()}${AppShowcase()}${BenefitsSection()}${TestimonialsSection()}${FAQSection()}${CTASection()}</main>${Footer()}${MobileStickyCTA()}`;
 
 initHeader();
-initClientCount();
 initResultsCarousel();
 initMobileStickyCTA();
 initCookieConsent();

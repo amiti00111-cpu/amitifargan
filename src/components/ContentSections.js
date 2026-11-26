@@ -2,7 +2,7 @@ import { content } from '../data/content.js';
 import { escapeHtml as e, icon } from '../lib/html.js';
 
 export function AudienceSection() {
-  return `<section class="section audience" id="audience" aria-labelledby="audience-title"><div class="container"><div class="section-heading"><span class="heading-rule" aria-hidden="true"></span><h2 id="audience-title">${e(content.audience.title)}</h2></div><ul role="list" class="audience-grid">${content.audience.items.map((text) => `<li>${icon('check')}<span>${e(text)}</span></li>`).join('')}</ul></div></section>`;
+  return `<section class="section audience" id="audience" aria-labelledby="audience-title"><div class="container"><div class="section-heading" id="features"><span class="heading-rule" aria-hidden="true"></span><h2 id="audience-title">${e(content.audience.title)}</h2></div><ul role="list" class="audience-grid goal-grid">${content.audience.items.map(item => `<li class="goal-card"><span class="feature-icon">${icon(item.icon)}</span><div><h3>${e(item.title)}</h3><p>${e(item.text)}</p></div></li>`).join('')}</ul></div></section>`;
 }
 
 export function ProblemSection() {
@@ -18,7 +18,7 @@ export function ProcessSection() {
 }
 
 export function BenefitsSection() {
-  return `<section class="section container benefits" id="benefits" aria-labelledby="benefits-title"><div class="benefits-panel"><span class="heading-rule" aria-hidden="true"></span><h2 id="benefits-title">${e(content.benefits.title)}</h2><p>${e(content.benefits.text)}</p><ul role="list" class="benefits-proof">${content.benefits.proofPoints.map((item) => `<li><strong ${item.value === '90+' ? 'aria-label="מעל 90"' : ''}>${item.value === '90+' ? '<bdi dir="ltr" data-client-count aria-hidden="true">90+</bdi>' : e(item.value)}</strong><span>${e(item.label)}</span></li>`).join('')}</ul><p class="benefits-motivation">${e(content.benefits.motivation)}</p></div></section>`;
+  return `<section class="section container benefits" id="benefits" aria-labelledby="benefits-title"><div class="benefits-panel"><span class="heading-rule" aria-hidden="true"></span><h2 id="benefits-title">${e(content.benefits.title)}</h2><p>${e(content.benefits.text)}</p></div></section>`;
 }
 
 // Animate the displayed statistic once per visit; assistive technology keeps the final value.
@@ -50,5 +50,5 @@ export function initClientCount() {
 }
 
 export function CoachingProcessSection() {
-  return `<section class="section coaching-work" id="coaching-work" aria-labelledby="coaching-work-title"><div class="container"><div class="section-heading"><span class="heading-rule" aria-hidden="true"></span><h2 id="coaching-work-title">${e(content.coachingProcess.title)}</h2></div><ol class="coaching-work-grid" role="list">${content.coachingProcess.items.map((item, index) => `<li class="coaching-work-card"><span class="coaching-step" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><div><h3>${e(item.title)}</h3><p>${e(item.text)}</p></div></li>`).join('')}</ol></div></section>`;
+  return `<section class="section coaching-work" id="coaching-work" aria-labelledby="coaching-work-title"><div class="container"><div class="section-heading"><span class="heading-rule" aria-hidden="true"></span><h2 id="coaching-work-title">${e(content.coachingProcess.title)}</h2></div><ol class="coaching-work-grid" role="list" id="process">${content.coachingProcess.items.map((item, index) => `<li class="coaching-work-card"><span class="coaching-step" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><div><h3>${e(item.title)}</h3><p>${e(item.text)}</p></div></li>`).join('')}</ol></div></section>`;
 }

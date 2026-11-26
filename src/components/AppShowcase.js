@@ -6,9 +6,7 @@ export function AppShowcase() {
     ['progress','מעקב התקדמות','בודקים ומשפרים לאורך הדרך'],
     ['adjust','קשר אישי','שאלות והתאמות עם המאמן'],
   ];
-  return `<section class="section premium-app" id="app-experience" aria-labelledby="app-title"><div class="container premium-app-layout">
-    <div class="premium-app-copy"><span class="heading-rule" aria-hidden="true"></span><h2 id="app-title">כל הליווי שלכם.<br>במקום אחד.</h2><p>תוכנית אימונים, תפריט ומעקב מסודר באפליקציה אישית, כדי שתדעו בדיוק מה עושים בכל שלב.</p><ul role="list">${items.map(([key,title])=>`<li>${icon(key)}<span>${title}</span></li>`).join('')}</ul></div>
-    <div class="premium-app-visual"><div class="premium-phone" aria-hidden="true"><div class="premium-phone-top"></div><div class="premium-phone-header">AMIT IFARGAN • ONLINE COACHING</div><div class="premium-phone-title">הליווי שלי</div>${items.map(([key,title,sub])=>`<div class="premium-phone-card">${icon(key)}<div><strong>${title}</strong><small>${sub}</small></div></div>`).join('')}</div><p class="premium-demo-label">המחשה עיצובית של חוויית הליווי, לא צילום מסך מהאפליקציה</p></div>
+  return `<section class="section premium-app" id="app-experience" aria-label="המחשת האפליקציה"><div class="container premium-app-layout copy-app-layout"><div class="premium-app-visual"><div class="premium-phone" aria-hidden="true"><div class="premium-phone-top"></div><div class="premium-phone-header">AMIT IFARGAN • ONLINE COACHING</div><div class="premium-phone-title">הליווי שלי</div>${items.map(([key,title,sub])=>`<div class="premium-phone-card">${icon(key)}<div><strong>${title}</strong><small>${sub}</small></div></div>`).join('')}</div><p class="premium-demo-label">זו המחשה של חוויית הליווי, לא צילום מסך של האפליקציה.</p></div>
   </div></section>`;
 }
 export function initPremiumMotion() {

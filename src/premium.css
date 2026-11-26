@@ -568,3 +568,20 @@ body {background:#f8faff;color:#0b192c;}
  .hero-media>img {object-position:50% 38%;}
  .hero-overlay {background:linear-gradient(0deg,#07111f 0%,#07111f33 7%,transparent 15%);}
 }
+
+/* Copy preview: keep original visual system; accommodate longer supplied text. */
+.hero h1 {font-size:clamp(2.05rem,8.1vw,3.15rem);text-wrap:balance;}
+.hero h1 span {display:block;}
+.hero-description {max-width:54ch;line-height:1.58;margin-top:15px;}
+.signature-contact-note {max-width:46ch;line-height:1.5;}
+.goal-grid .goal-card {display:flex;flex-direction:column;align-items:flex-start;gap:14px;height:100%;padding:24px;text-align:right;}
+.goal-card h3 {font-size:1.4rem;margin:0 0 10px;color:#0b192c;}
+.goal-card p {font-weight:400;line-height:1.7;margin:0;}
+.copy-app-layout {grid-template-columns:minmax(0,1fr);justify-items:center;}
+.copy-app-layout .premium-app-visual {width:min(100%,430px);}
+.results .signature-results-lead {max-width:62ch;line-height:1.65;}
+.results .results-help {margin:18px auto 0;text-align:center;}
+.copy-cta-note {font-weight:600;}
+.benefits {padding-top:52px;}
+@media(min-width:768px){.hero h1 {font-size:clamp(2.5rem,4.2vw,4.8rem);} .hero-description {font-size:1.08rem;max-width:52ch;} .hero-copy {padding-block:34px;} .goal-grid {grid-template-columns:repeat(3,minmax(0,1fr));} }
+@media(max-width:374px){.hero h1{font-size:2rem;}}

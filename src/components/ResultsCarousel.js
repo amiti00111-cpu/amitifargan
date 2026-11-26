@@ -43,7 +43,7 @@ export function ResultsCarousel() {
       <div class="results-intro">
         <div class="section-heading">
           <span class="heading-rule" aria-hidden="true"></span>
-          <h2 id="results-title">${e(content.results.title)}</h2><p class="signature-results-lead">לכל שינוי יש דרך משלו.</p>
+          <h2 id="results-title">${e(content.results.title)}</h2><p class="signature-results-lead">${e(content.results.intro)}</p>
         </div>
         <div class="carousel-controls" aria-label="ניווט בין תוצאות">
           <button class="icon-button result-previous" type="button" aria-label="התוצאה הקודמת">←</button>
@@ -51,13 +51,13 @@ export function ResultsCarousel() {
           <button class="icon-button result-next" type="button" aria-label="התוצאה הבאה">→</button>
         </div>
       </div>
-      <p class="results-help" id="results-help">כל זוג תמונות מציג את אותו אדם בשלבים שונים. התוצאות משתנות מאדם לאדם.</p>
       <div class="carousel" data-carousel>
         <div class="carousel-window" tabindex="0" role="region" aria-roledescription="carousel" aria-label="תוצאות לפני ואחרי" aria-describedby="results-help">
           <div class="carousel-track">${cards}</div>
         </div>
         <div class="carousel-dots" aria-label="בחירת תוצאה">${dots()}</div>
         <div class="premium-carousel-bar"><button type="button" data-carousel-play aria-pressed="false">הפעלה אוטומטית</button><span>החליקו בין התמונות או לחצו להגדלה</span></div>
+        <p class="results-help" id="results-help">${e(content.results.note)}</p>
         <dialog class="premium-photo-dialog" aria-label="תמונה מוגדלת"><button type="button" data-close-photo>סגירה ✕</button><img alt=""></dialog>
       </div>
     </div>
