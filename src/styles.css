@@ -12,6 +12,10 @@
     --muted: #526174;
     --accent: #173b67;
     --accent-hover: #102c4e;
+    --electric: #2563eb;
+    --bright: #3b82f6;
+    --blue-soft: #dbeafe;
+    --blue-wash: #f8fbff;
     --surface: #f1f5f9;
     --line: #dce5ef;
     --radius-sm: 10px;
@@ -310,7 +314,6 @@
 .result-photo-overlay { position: relative; }
 .result-pair .result-photo-overlay figcaption { position: absolute; z-index: 2; top: 12px; inset-inline-start: 12px; padding: 6px 16px; border-radius: 7px; color: #fff; background: #142b46; font-weight: 700; pointer-events: none; }
 
-to { transform: translateX(calc(-1 * var(--loop-distance))); } }
 .coaching-work { background: #fff; border-block: 1px solid #dce5ef; }
 .coaching-work-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
 .coaching-work-card { display: flex; align-items: flex-start; gap: 16px; padding: 22px; border: 1px solid #dce5ef; border-radius: 16px; background: #f8fafc; min-width: 0; }
@@ -781,5 +784,261 @@ section, main, .footer-inner, .header-inner, .hero-copy, .feature-card > p { min
 
   @media (prefers-reduced-motion: reduce) {
     .carousel-track { transition: none !important; }
+  }
+}
+
+
+/* Vibrant brand pass: stronger contrast and more visual energy. */
+@layer components {
+  .site-header {
+    border-bottom: 1px solid rgb(37 99 235 / 12%);
+  }
+  .brand-mark {
+    border-color: var(--electric);
+    box-shadow: 0 0 0 5px rgb(37 99 235 / 8%);
+  }
+  .brand-mark::after { background: var(--electric); }
+
+  .header-nav .button,
+  .mobile-sticky-cta .button {
+    background: linear-gradient(135deg, var(--electric), var(--bright));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgb(37 99 235 / 24%);
+  }
+  .header-nav .button:hover,
+  .mobile-sticky-cta .button:hover {
+    background: linear-gradient(135deg, #1d4ed8, var(--electric));
+    transform: translateY(-1px);
+  }
+
+  .hero {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(circle at 15% 12%, rgb(59 130 246 / 40%), transparent 30%),
+      radial-gradient(circle at 90% 90%, rgb(37 99 235 / 26%), transparent 34%),
+      linear-gradient(135deg, #0d1f35 0%, var(--ink) 48%, var(--accent) 100%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 260px;
+    height: 260px;
+    inset-inline-start: -90px;
+    inset-block-start: -90px;
+    border-radius: 50%;
+    background: rgb(59 130 246 / 18%);
+    filter: blur(8px);
+  }
+  .hero h1 {
+    text-shadow: 0 12px 34px rgb(0 0 0 / 22%);
+  }
+  .hero-subtitle { color: #fff; }
+  .hero-button {
+    background: linear-gradient(135deg, var(--electric), var(--bright));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 14px 32px rgb(37 99 235 / 32%);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .hero-button:hover {
+    background: linear-gradient(135deg, #1d4ed8, var(--electric));
+    box-shadow: 0 18px 38px rgb(37 99 235 / 38%);
+    transform: translateY(-2px);
+  }
+
+  .audience {
+    background:
+      radial-gradient(circle at 90% 10%, rgb(219 234 254 / 80%), transparent 30%),
+      var(--paper);
+  }
+  .features {
+    background:
+      radial-gradient(circle at 10% 0%, rgb(59 130 246 / 10%), transparent 32%),
+      linear-gradient(180deg, var(--blue-wash), #eef5ff);
+  }
+  .coaching-work {
+    background: linear-gradient(180deg, #fff, var(--blue-wash));
+    border-block: 1px solid rgb(37 99 235 / 10%);
+  }
+  .results {
+    background:
+      radial-gradient(circle at 90% 0%, rgb(59 130 246 / 16%), transparent 32%),
+      linear-gradient(180deg, #eef5ff 0%, var(--blue-soft) 100%);
+  }
+
+  .heading-rule {
+    width: 48px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--electric), var(--bright));
+  }
+
+  .audience-grid li,
+  .feature-card,
+  .coaching-work-card,
+  .process-step {
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .audience-grid li:hover,
+  .feature-card:hover,
+  .coaching-work-card:hover,
+  .process-step:hover {
+    transform: translateY(-4px);
+    border-color: rgb(37 99 235 / 24%);
+    box-shadow: 0 16px 34px rgb(37 99 235 / 10%);
+  }
+
+  .audience-grid svg {
+    color: var(--electric);
+    filter: drop-shadow(0 4px 8px rgb(37 99 235 / 18%));
+  }
+  .feature-icon {
+    background: linear-gradient(135deg, var(--blue-soft), #eef6ff);
+    color: var(--electric);
+    box-shadow: inset 0 0 0 1px rgb(37 99 235 / 10%);
+  }
+  .coaching-step,
+  .step-number {
+    color: var(--electric);
+  }
+  .coaching-step {
+    color: #fff;
+    background: linear-gradient(135deg, var(--electric), var(--bright));
+    box-shadow: 0 8px 18px rgb(37 99 235 / 20%);
+  }
+
+  .results-carousel .carousel-window,
+  .carousel-window {
+    border: 1px solid rgb(37 99 235 / 16%);
+    box-shadow: 0 24px 60px rgb(37 99 235 / 14%);
+  }
+  .result-slide {
+    background:
+      radial-gradient(circle at 50% -10%, rgb(219 234 254 / 75%), transparent 36%),
+      #fff;
+  }
+  .result-person {
+    color: var(--electric);
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+  .result-photo {
+    border: 1px solid rgb(37 99 235 / 12%);
+    box-shadow: 0 10px 26px rgb(15 35 60 / 8%);
+  }
+  .result-photo figcaption {
+    background: linear-gradient(135deg, var(--electric), var(--bright));
+    box-shadow: 0 8px 20px rgb(37 99 235 / 28%);
+  }
+  .icon-button.result-previous,
+  .icon-button.result-next {
+    border-color: rgb(37 99 235 / 24%);
+    background: #fff;
+    color: var(--electric);
+    box-shadow: 0 8px 18px rgb(37 99 235 / 10%);
+  }
+  .icon-button.result-previous:hover:not(:disabled),
+  .icon-button.result-next:hover:not(:disabled) {
+    background: var(--electric);
+    color: #fff;
+  }
+  .carousel-dot::before { background: #8ba5ca; }
+  .carousel-dot.is-active::before {
+    background: linear-gradient(90deg, var(--electric), var(--bright));
+  }
+  .carousel-counter strong { color: var(--electric); }
+
+  .benefits-panel {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 90% 0%, rgb(59 130 246 / 38%), transparent 34%),
+      linear-gradient(135deg, #0b1d33 0%, var(--ink) 45%, var(--accent) 100%);
+  }
+  .benefits-panel::after {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    inset-inline-end: -80px;
+    inset-block-end: -100px;
+    border-radius: 50%;
+    background: rgb(37 99 235 / 18%);
+    pointer-events: none;
+  }
+  .benefits-proof li {
+    border-color: rgb(255 255 255 / 24%);
+    background: rgb(255 255 255 / 10%);
+    backdrop-filter: blur(4px);
+  }
+  .benefits-proof strong {
+    color: #fff;
+    text-shadow: 0 6px 18px rgb(0 0 0 / 16%);
+  }
+
+  .cta-section {
+    background:
+      radial-gradient(circle at 10% 50%, rgb(59 130 246 / 14%), transparent 30%),
+      linear-gradient(180deg, #fff, var(--blue-wash));
+  }
+  .cta-inner {
+    padding-block: 12px;
+  }
+  .cta-inner .button {
+    background: linear-gradient(135deg, var(--electric), var(--bright));
+    border-color: transparent;
+    box-shadow: 0 14px 30px rgb(37 99 235 / 26%);
+  }
+  .cta-inner .button:hover {
+    background: linear-gradient(135deg, #1d4ed8, var(--electric));
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgb(37 99 235 / 30%);
+  }
+}
+
+@layer responsive {
+  @media (max-width: 767px) {
+    .site-header { background: rgb(255 255 255 / 96%); }
+    .hero {
+      box-shadow: 0 22px 48px rgb(20 43 70 / 22%);
+    }
+    .hero::before {
+      width: 190px;
+      height: 190px;
+      inset-inline-start: -70px;
+      inset-block-start: -70px;
+    }
+    .hero-button {
+      box-shadow: 0 12px 28px rgb(37 99 235 / 30%);
+    }
+    .feature-card,
+    .audience-grid li,
+    .coaching-work-card,
+    .process-step {
+      box-shadow: 0 10px 24px rgb(37 99 235 / 6%);
+    }
+    .results {
+      padding-block: 54px;
+    }
+    .result-slide {
+      padding: 14px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-copy { position: relative; z-index: 2; }
+    .hero-media::before {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      inset-block: 0;
+      inset-inline-start: 0;
+      width: 80px;
+      background: linear-gradient(to left, transparent, rgb(20 43 70 / 70%));
+      pointer-events: none;
+    }
+    .results-layout { max-width: 980px; }
   }
 }
