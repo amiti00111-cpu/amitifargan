@@ -547,3 +547,10 @@ body {background:#f8faff;color:#0b192c;}
  .feature-grid {grid-template-columns:repeat(4,minmax(0,1fr));}
 }
 @media(prefers-reduced-motion:reduce){.hero-copy>*,.hero-media>img{animation:none!important;}}
+
+/* Keep the first-visit consent panel below the hero on narrow phones. Consent controls and policy remain unchanged. */
+@media(max-width:767px){
+ .cookie-banner {position:static;inset:auto;max-height:none;overflow:visible;margin:14px auto 0;padding:16px;width:calc(100% - 32px);box-shadow:none;}
+ .cookie-banner[hidden]{display:none;}
+ body.cookie-open {padding-bottom:0;}
+}
