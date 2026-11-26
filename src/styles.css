@@ -347,12 +347,6 @@ section, main, .footer-inner, .header-inner, .hero-copy, .feature-card > p { min
   .header-nav > a:not(.button) { font-size: .8rem; padding-inline: 6px; }
   .header-nav .button { padding-inline: 10px; font-size: .8rem; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .results-marquee .marquee-track { animation: none !important; transform: none; }
-  .results-marquee .marquee-copy { display: none; }
-  .results-marquee .marquee-window { overflow-x: auto; }
-  .results-marquee .results-navigation { display: flex; }
-}
 @media (forced-colors: active) { :focus-visible { outline: 3px solid Highlight; } .button, .coaching-step { border: 1px solid ButtonText; } }
 
 /* Fixed mobile controls must not cover a keyboard user's focused content. */
