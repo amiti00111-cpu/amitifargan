@@ -1,4 +1,3 @@
-import '@fontsource-variable/heebo';
 import './styles.css';
 import { Header, initHeader } from './components/Header.js';
 import { HeroSection } from './components/HeroSection.js';
