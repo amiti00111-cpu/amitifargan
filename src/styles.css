@@ -419,3 +419,231 @@ h1, h2, h3 { text-align: center; }
 }
 .contact-note { max-width: 68ch; color: var(--muted); font-size: .875rem; text-align: center; }
 .contact-note a { text-decoration: underline; text-underline-offset: 3px; }
+
+
+/* Landing-page refinement: stronger hero composition and explicit paired transformation carousel. */
+@layer components {
+  .results-carousel .results-layout { max-width: 920px; }
+  .results-carousel .results-intro { align-items: center; }
+  .results-carousel .carousel { width: 100%; }
+  .results-carousel .carousel-window {
+    overflow: hidden;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    box-shadow: 0 18px 48px rgb(15 35 60 / 8%);
+  }
+  .results-carousel .carousel-track {
+    direction: ltr;
+    display: flex;
+    width: 100%;
+    will-change: transform;
+  }
+  .results-carousel .result-slide {
+    direction: rtl;
+    flex: 0 0 100%;
+    min-width: 100%;
+    padding: 18px;
+  }
+  .results-carousel .result-person {
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--accent);
+  }
+  .results-carousel .result-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .results-carousel .result-photo {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    background: var(--surface);
+  }
+  .results-carousel .result-frame {
+    width: 100%;
+    height: clamp(280px, 50vw, 520px);
+    aspect-ratio: auto;
+    overflow: hidden;
+    border-radius: 18px;
+    background: var(--surface);
+  }
+  .results-carousel .result-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  .results-carousel .result-photo figcaption {
+    position: absolute;
+    inset-block-start: 10px;
+    inset-inline-start: 10px;
+    z-index: 2;
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: #fff;
+    background: rgb(20 43 70 / 92%);
+    font-size: .9rem;
+    font-weight: 700;
+    line-height: 1.2;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 12%);
+  }
+  .results-carousel .result-combined-wrap {
+    overflow: hidden;
+    border-radius: 18px;
+    background: var(--surface);
+  }
+  .results-carousel .result-combined {
+    display: block;
+    width: 100%;
+    max-height: 620px;
+    object-fit: contain;
+    margin-inline: auto;
+  }
+  .results-carousel .carousel-controls {
+    direction: ltr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .results-carousel .carousel-counter {
+    min-width: 56px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .results-carousel .carousel-dots { margin-top: 12px; }
+  .results-carousel .carousel-dot::before { width: 7px; height: 7px; }
+  .results-carousel .carousel-dot.is-active::before { width: 26px; }
+}
+
+@layer responsive {
+  @media (max-width: 767px) {
+    .hero {
+      margin-block: 12px 40px;
+      border-radius: 20px;
+    }
+    .hero-copy {
+      padding: 30px 20px 26px;
+      align-items: center;
+      text-align: center;
+    }
+    .hero h1 {
+      max-width: 12ch;
+      font-size: clamp(2rem, 9.6vw, 3rem);
+      line-height: 1.08;
+    }
+    .hero-subtitle {
+      margin-top: 16px;
+      max-width: 31ch;
+      font-size: 1.02rem;
+      line-height: 1.5;
+    }
+    .hero-description {
+      margin-top: 12px;
+      max-width: 35ch;
+      font-size: .96rem;
+      line-height: 1.65;
+    }
+    .hero-button {
+      width: min(100%, 360px);
+      margin-top: 22px;
+      min-height: 52px;
+    }
+    .hero-media {
+      height: clamp(330px, 96vw, 470px);
+    }
+    .hero-media > img {
+      object-position: center 24%;
+    }
+    .hero-overlay {
+      background: linear-gradient(to bottom, rgb(0 0 0 / 12%), rgb(0 0 0 / 28%));
+    }
+    .results-carousel .results-intro {
+      flex-direction: column;
+      gap: 14px;
+    }
+    .results-carousel .result-slide { padding: 12px; }
+    .results-carousel .result-pair { gap: 8px; }
+    .results-carousel .result-frame { height: clamp(230px, 66vw, 360px); }
+    .results-carousel .result-photo figcaption {
+      inset-block-start: 8px;
+      inset-inline-start: 8px;
+      padding: 5px 10px;
+      font-size: .82rem;
+    }
+    .results-carousel .carousel-controls { width: 100%; }
+    .results-carousel .carousel-controls .icon-button { width: 44px; height: 44px; }
+    .results-carousel .results-help { font-size: .9rem; }
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      grid-template-columns: minmax(0, 1.12fr) minmax(360px, .88fr);
+      min-height: 590px;
+      margin-block: 26px 72px;
+    }
+    .hero-copy {
+      min-height: 590px;
+      padding: 56px 54px;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: right;
+    }
+    .hero h1,
+    .hero-subtitle,
+    .hero-description {
+      margin-inline: 0;
+      text-align: right;
+    }
+    .hero h1 {
+      max-width: 11ch;
+      font-size: clamp(3rem, 5.4vw, 4.7rem);
+      line-height: 1.03;
+      letter-spacing: -.045em;
+    }
+    .hero-subtitle {
+      max-width: 31ch;
+      margin-top: 24px;
+      font-size: 1.2rem;
+    }
+    .hero-description {
+      max-width: 43ch;
+      margin-top: 16px;
+      font-size: 1.05rem;
+    }
+    .hero-button {
+      align-self: flex-start;
+      width: auto;
+      margin-top: 30px;
+      padding-inline: 24px;
+    }
+    .hero-media {
+      min-height: 590px;
+      height: 100%;
+    }
+    .hero-photo .hero-media {
+      mask-image: none;
+    }
+    .hero-media > img {
+      object-position: center 26%;
+    }
+    .hero-overlay {
+      background: linear-gradient(to left, rgb(0 0 0 / 8%), rgb(0 0 0 / 30%));
+    }
+    .results-carousel .result-slide { padding: 22px; }
+    .results-carousel .result-pair { gap: 18px; }
+  }
+
+  @media (min-width: 1200px) {
+    .hero {
+      grid-template-columns: minmax(0, 1.08fr) minmax(420px, .92fr);
+      min-height: 630px;
+    }
+    .hero-copy { min-height: 630px; padding: 64px 68px; }
+    .hero-media { min-height: 630px; }
+  }
+}
