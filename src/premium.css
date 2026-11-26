@@ -561,3 +561,10 @@ body {background:#f8faff;color:#0b192c;}
  .site-header .header-nav>a:not(.button) {color:#f5f8fc;}
  .site-header .header-nav>a:not(.button):hover {color:#9ce2ff;background:transparent;}
 }
+
+/* Hero portrait: show head, arms, torso and upper trousers on phones. */
+@media(max-width:767px){
+ .hero-media,.hero-photo .hero-media {aspect-ratio:0.9;height:auto;max-height:480px;min-height:0;}
+ .hero-media>img {object-position:50% 38%;}
+ .hero-overlay {background:linear-gradient(0deg,#07111f 0%,#07111f33 7%,transparent 15%);}
+}
