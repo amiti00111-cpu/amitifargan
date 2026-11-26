@@ -14,7 +14,7 @@ import { CookieConsent, initCookieConsent } from './components/CookieConsent.js'
 import { site } from './config/site.js';
 import { safeUrl } from './lib/html.js';
 
-document.querySelector('#app').innerHTML = `${Header()}<main id="main" tabindex="-1"><div id="top">${HeroSection()}</div>${AudienceSection()}${ProblemSection()}${CoachingFeatures()}${CoachingProcessSection()}${AppShowcase()}${BenefitsSection()}${ResultsCarousel()}${TestimonialsSection()}${ProcessSection()}${FAQSection()}${CTASection()}</main>${Footer()}${MobileStickyCTA()}${CookieConsent()}`;
+document.querySelector('#app').innerHTML = `${Header()}<main id="main" tabindex="-1"><div id="top">${HeroSection()}</div>${CookieConsent()}${AudienceSection()}${ProblemSection()}${CoachingFeatures()}${CoachingProcessSection()}${AppShowcase()}${BenefitsSection()}${ResultsCarousel()}${TestimonialsSection()}${ProcessSection()}${FAQSection()}${CTASection()}</main>${Footer()}${MobileStickyCTA()}`;
 
 initHeader();
 initClientCount();
