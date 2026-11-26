@@ -83,6 +83,11 @@ export const content = {
         before: { src: '/images/outdoor-before.webp', width: 1200, height: 1081, sourceFile: '05b69454-02fd-4d81-9b67-9a93786f80ce.JPG', alt: 'לפני — התמונה בחוץ ליד הקיר' },
         after: { src: '/images/flex-after.webp', width: 1200, height: 970, sourceFile: 'b91f328c-0ebb-4bdc-a4d4-c19b65d3a047.JPG', alt: 'אחרי — הפעלת שריר מול המראה' },
       },
+      {
+        id: 'white-black-mirror-0566',
+        before: { src: '/images/white-shirt-0566-before.webp', width: 280, height: 713, alt: 'לפני — צילום מול המראה בחולצה לבנה' },
+        after: { src: '/images/black-shirt-0566-after.webp', width: 280, height: 712, alt: 'אחרי — צילום מול המראה בחולצה שחורה' },
+      },
     ],
   },
   coachingProcess: {
