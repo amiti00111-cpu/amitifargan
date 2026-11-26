@@ -6,7 +6,7 @@ const items = content.results.items.filter(item => item.image?.src || (item.befo
 
 function photo(image, label) {
   return `<figure class="result-photo">
-    <div class="result-frame">${media(image, label)}</div>
+    <button class="premium-photo-open" type="button" aria-label="הגדלת תמונת ${e(label)}"><span class="result-frame">${media(image, label)}</span></button>
     <figcaption><span>${e(label)}</span></figcaption>
   </figure>`;
 }
@@ -57,6 +57,8 @@ export function ResultsCarousel() {
           <div class="carousel-track">${cards}</div>
         </div>
         <div class="carousel-dots" aria-label="בחירת תוצאה">${dots()}</div>
+        <div class="premium-carousel-bar"><button type="button" data-carousel-play aria-pressed="false">הפעלה אוטומטית</button><span>אפשר להחליק בין התוצאות ולהגדיל תמונות בלחיצה</span></div>
+        <dialog class="premium-photo-dialog" aria-label="תמונה מוגדלת"><button type="button" data-close-photo>סגירה ✕</button><img alt=""></dialog>
       </div>
     </div>
   </section>`;
@@ -77,6 +79,15 @@ export function initResultsCarousel() {
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let index = 0;
   let pointerStart = null;
+  let playing = false, timer, dragged = false;
+  const play = root.querySelector("[data-carousel-play]");
+  const dialog = root.querySelector("dialog");
+  let opener;
+  function stop() { clearInterval(timer); playing = false; play.setAttribute("aria-pressed", "false"); play.textContent = "הפעלה אוטומטית"; }
+  play.addEventListener("click", () => { if (playing) return stop(); if (slides.length < 2) return; playing = true; play.setAttribute("aria-pressed", "true"); play.textContent = "עצירה"; timer = setInterval(() => { if (!document.hidden && !dialog.open && !viewport.matches(":hover") && !viewport.contains(document.activeElement)) goTo(index + 1); }, 4500); });
+  root.querySelectorAll(".premium-photo-open").forEach(button => button.addEventListener("click", () => { if (dragged || !dialog.showModal) return; stop(); opener = button; const source = button.querySelector("img"); const image = dialog.querySelector("img"); image.src = source.currentSrc || source.src; image.alt = source.alt; dialog.showModal(); }));
+  dialog.querySelector("[data-close-photo]").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("close", () => { opener?.focus(); });
 
   function render() {
     track.style.transitionDuration = motion.matches ? '0s' : '';
@@ -91,13 +102,13 @@ export function initResultsCarousel() {
       dot.classList.toggle('is-active', active);
       dot.setAttribute('aria-current', String(active));
     });
-    previous.disabled = index === 0;
-    next.disabled = index === slides.length - 1;
+    previous.disabled = slides.length < 2;
+    next.disabled = slides.length < 2;
     counter.textContent = String(index + 1);
   }
 
   function goTo(nextIndex) {
-    index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+    index = (nextIndex + slides.length) % slides.length;
     render();
   }
 
@@ -114,6 +125,7 @@ export function initResultsCarousel() {
 
   viewport.addEventListener('pointerdown', event => {
     if (event.pointerType === 'mouse' && event.button !== 0) return;
+    dragged = false;
     pointerStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
   }, { passive: true });
 
@@ -123,11 +135,13 @@ export function initResultsCarousel() {
     const deltaY = event.clientY - pointerStart.y;
     pointerStart = null;
     if (Math.abs(deltaX) < 48 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+    dragged = true;
     if (deltaX < 0) goTo(index + 1);
     else goTo(index - 1);
   }, { passive: true });
 
   viewport.addEventListener('pointercancel', () => { pointerStart = null; }, { passive: true });
-  motion.addEventListener('change', render);
+  motion.addEventListener('change', () => { if (motion.matches) stop(); render(); });
+  if (slides.length < 2) play.disabled = true;
   render();
 }

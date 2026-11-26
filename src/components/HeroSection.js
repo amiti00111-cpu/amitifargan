@@ -11,14 +11,16 @@ export function HeroSection() {
     : e(hero.title);
   return `<section class="hero container ${hero.image?.src ? 'hero-photo' : ''}" aria-labelledby="hero-title">
     <div class="hero-copy">
+      <span class="hero-kicker">ליווי אישי • אימון ותזונה</span>
       <h1 id="hero-title">${title}</h1>
       <p class="hero-subtitle">${e(hero.subtitle)}</p>
       <p class="hero-description">${e(hero.description)}</p>
       <a class="button hero-button" href="${e(contactHref())}">${e(hero.cta)}${icon()}</a>
+      <a class="hero-secondary" href="#results">לצפייה בתוצאות לפני ואחרי ${icon()}</a>
     </div>
     <div class="hero-media">
       ${media(hero.image, '[Hero Image]', { hero: true })}
-      ${hero.image?.src ? '<span class="hero-overlay" aria-hidden="true"></span>' : ''}
+      ${hero.image?.src ? '<span class="hero-overlay" aria-hidden="true"></span><div class="hero-photo-tag">עמית יפרגן<small>מאמן כושר וליווי אישי</small></div>' : ''}
     </div>
-  </section>`;
+  </section><div class="premium-proof" aria-label="על הליווי">${content.benefits.proofPoints.map(item => `<div><strong><bdi>${e(item.value)}</bdi></strong><span>${e(item.label)}</span></div>`).join('')}</div>`;
 }

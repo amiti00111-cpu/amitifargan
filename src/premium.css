@@ -187,3 +187,21 @@ main {overflow:clip;}
 @keyframes premium-enter {from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
 @keyframes premium-photo-enter {from{opacity:.5;transform:scale(1.035)}to{opacity:1;transform:scale(1)}}
 @media(prefers-reduced-motion:reduce) {.hero-copy>*,.hero-media>img,.premium-reveal{animation:none!important;}.button,.carousel-track{transition:none!important;}}
+
+/* Final refinements: preserve visibility and accessible interactions. */
+.hero-secondary svg {width:18px;height:18px;}
+.hero h1 span {display:block;}
+.hero h1 span:last-child {color:#70d1ff;}
+.premium-photo-open .result-frame {display:block;}
+.premium-photo-open {border-radius:inherit;}
+.premium-photo-open:focus-visible {outline-offset:-5px;}
+.premium-photo-open img {display:block;}
+.premium-phone-card div {min-width:0;}
+.premium-app-copy h2 {color:#0c2037;line-height:1.08;}
+.coaching-work-grid {position:relative;}
+.coaching-work-card,.feature-card,.process-step,.audience-grid li {transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+.coaching-work-card::before {content:"";position:absolute;inset-inline-start:0;inset-block:0;width:4px;background:linear-gradient(#38bdf8,#2563eb);}
+.cta-inner .contact-note a {color:#c9edff;text-decoration:underline;}
+.premium-photo-dialog {margin:auto;}
+.premium-photo-dialog img {display:block;}
+@media(prefers-reduced-motion:reduce) {.coaching-work-card,.feature-card,.process-step,.audience-grid li {transition:none;}}

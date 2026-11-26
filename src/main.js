@@ -1,4 +1,6 @@
 import './styles.css';
+import './premium.css';
+import { AppShowcase, initPremiumMotion } from './components/AppShowcase.js';
 import { Header, initHeader } from './components/Header.js';
 import { HeroSection } from './components/HeroSection.js';
 import { AudienceSection, ProblemSection, CoachingFeatures, CoachingProcessSection, ProcessSection, BenefitsSection, initClientCount } from './components/ContentSections.js';
@@ -12,13 +14,14 @@ import { CookieConsent, initCookieConsent } from './components/CookieConsent.js'
 import { site } from './config/site.js';
 import { safeUrl } from './lib/html.js';
 
-document.querySelector('#app').innerHTML = `${Header()}<main id="main" tabindex="-1"><div id="top">${HeroSection()}</div>${AudienceSection()}${ProblemSection()}${CoachingFeatures()}${CoachingProcessSection()}${ResultsCarousel()}${ProcessSection()}${BenefitsSection()}${TestimonialsSection()}${CTASection()}${FAQSection()}</main>${Footer()}${MobileStickyCTA()}${CookieConsent()}`;
+document.querySelector('#app').innerHTML = `${Header()}<main id="main" tabindex="-1"><div id="top">${HeroSection()}</div>${AudienceSection()}${ProblemSection()}${CoachingFeatures()}${CoachingProcessSection()}${AppShowcase()}${ResultsCarousel()}${ProcessSection()}${BenefitsSection()}${TestimonialsSection()}${CTASection()}${FAQSection()}</main>${Footer()}${MobileStickyCTA()}${CookieConsent()}`;
 
 initHeader();
 initClientCount();
 initResultsCarousel();
 initMobileStickyCTA();
 initCookieConsent();
+initPremiumMotion();
 
 // Place keyboard focus at internal CTA destinations after navigation.
 document.addEventListener('click', (event) => {
