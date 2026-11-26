@@ -554,3 +554,10 @@ body {background:#f8faff;color:#0b192c;}
  .cookie-banner[hidden]{display:none;}
  body.cookie-open {padding-bottom:0;}
 }
+
+/* Desktop navigation must inherit the hero/header surface rather than the old white nav. */
+@media(min-width:768px){
+ .site-header .header-nav {background:transparent;border:0;box-shadow:none;}
+ .site-header .header-nav>a:not(.button) {color:#f5f8fc;}
+ .site-header .header-nav>a:not(.button):hover {color:#9ce2ff;background:transparent;}
+}
